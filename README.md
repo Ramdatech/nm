@@ -1,5 +1,3 @@
-# N.M
-
 # 초안
 ![image](https://github.com/user-attachments/assets/68b51529-3d1d-4006-82f2-57a72d82018e)
 

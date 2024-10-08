@@ -31,10 +31,16 @@ public class InputInfo {
     public void onPostPersist() {
         ClientInfoCreated clientInfoCreated = new ClientInfoCreated(this);
         clientInfoCreated.publishAfterCommit();
+    }
 
+    @PostUpdate
+    public void onPostUpdate() {
         ClientInfoModified clientInfoModified = new ClientInfoModified(this);
         clientInfoModified.publishAfterCommit();
+    }
 
+    @PostRemove
+    public void onPostRemove() {
         ClientInfoDeleted clientInfoDeleted = new ClientInfoDeleted(this);
         clientInfoDeleted.publishAfterCommit();
     }
