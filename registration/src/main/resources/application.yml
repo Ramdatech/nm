@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: registration
+  time:
+    zone: Asia/Seoul  # Add timezone configuration
 ---
 
 spring:
