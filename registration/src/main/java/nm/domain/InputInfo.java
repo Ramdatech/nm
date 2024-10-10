@@ -1,5 +1,7 @@
 package nm.domain;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +28,11 @@ public class InputInfo {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Detail> details;
+
+    @PrePersist
+    public void onPrePersist() {
+        this.createDate = Date.from(ZonedDateTime.now(ZoneId.of("Asia/Seoul")).toInstant());
+    }
 
     @PostPersist
     public void onPostPersist() {
