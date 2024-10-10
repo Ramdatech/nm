@@ -15,16 +15,22 @@
                             <v-list-item-title>
                             </v-list-item-title>
                             <v-list-item-subtitle>
-                                ClientId :  {{item.clientId }}
+                                IpId :  {{item.ipId }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                ClientName :  {{item.clientName }}
+                                Obj :  {{item.obj }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                CreateDate :  {{item.createDate }}
+                                ObjDetail :  {{item.objDetail }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                Details :  {{item.details }}
+                                State :  {{item.state }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                EndedDate :  {{item.endedDate }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                ResultData :  {{item.resultData }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -43,7 +49,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'RegistrationInputInfoPicker',
+        name: 'InspecthttpHttpDataPicker',
         props: {
             value: [String, Object, Array, Number, Boolean],
         },
@@ -53,14 +59,14 @@
         }),
         async created() {
             var me = this;
-            var temp = await axios.get(axios.fixUrl('/inputInfos'))
+            var temp = await axios.get(axios.fixUrl('/httpData'))
             if(temp.data) {
-                me.list = temp.data._embedded.inputInfos;
+                me.list = temp.data._embedded.httpData;
             }
 
             if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
                 var id = Object.values(me.value)[0];
-                var tmpValue = await axios.get(axios.fixUrl('/inputInfos/' + id))
+                var tmpValue = await axios.get(axios.fixUrl('/httpData/' + id))
                 if(tmpValue.data) {
                     var val = tmpValue.data
                     me.list.forEach(function(item, idx) {
@@ -76,7 +82,11 @@
                 var obj = {}
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
-                    obj['clientId'] = arr[4]; 
+                    obj['ipId'] = arr[4]; 
+                    
+                    
+                    
+                    
                     
                     
                     

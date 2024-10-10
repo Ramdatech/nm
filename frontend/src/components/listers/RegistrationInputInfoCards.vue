@@ -104,8 +104,9 @@
             me.values = temp.data._embedded.inputInfos;
             
             me.newValue = {
+                'clientId': 0,
                 'clientName': '',
-                'createDate': '2024-10-08',
+                'createDate': '2024-10-10',
                 'details': [],
             }
         },

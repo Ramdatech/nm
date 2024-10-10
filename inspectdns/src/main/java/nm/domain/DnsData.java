@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
-import nm.InspecticmpApplication;
-import nm.domain.IcmpInspected;
+import nm.InspectdnsApplication;
+import nm.domain.DnsInspected;
 
 @Entity
-@Table(name = "IcmpData_table")
+@Table(name = "DnsData_table")
 @Data
 //<<< DDD / Aggregate Root
-public class IcmpData {
+public class DnsData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,33 +30,33 @@ public class IcmpData {
 
     @PostPersist
     public void onPostPersist() {
-        IcmpInspected icmpInspected = new IcmpInspected(this);
-        icmpInspected.publishAfterCommit();
+        DnsInspected dnsInspected = new DnsInspected(this);
+        dnsInspected.publishAfterCommit();
     }
 
-    public static IcmpDataRepository repository() {
-        IcmpDataRepository icmpDataRepository = InspecticmpApplication.applicationContext.getBean(
-            IcmpDataRepository.class
+    public static DnsDataRepository repository() {
+        DnsDataRepository dnsDataRepository = InspectdnsApplication.applicationContext.getBean(
+            DnsDataRepository.class
         );
-        return icmpDataRepository;
+        return dnsDataRepository;
     }
 
     //<<< Clean Arch / Port Method
-    public static void icmpInspect(SwapToInspect swapToInspect) {
+    public static void inspect(SwapToInspect swapToInspect) {
         //implement business logic here:
 
         /** Example 1:  new item 
-        IcmpData icmpData = new IcmpData();
-        repository().save(icmpData);
+        DnsData dnsData = new DnsData();
+        repository().save(dnsData);
 
         */
 
         /** Example 2:  finding and process
         
-        repository().findById(swapToInspect.get???()).ifPresent(icmpData->{
+        repository().findById(swapToInspect.get???()).ifPresent(dnsData->{
             
-            icmpData // do something
-            repository().save(icmpData);
+            dnsData // do something
+            repository().save(dnsData);
 
 
          });

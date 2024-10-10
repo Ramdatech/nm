@@ -9,10 +9,10 @@
         </template>
 
         <v-card-title v-if="value._links">
-            icmpData # {{decode(value._links.self.href.split("/")[value._links.self.href.split("/").length - 1])}}
+            dnsData # {{decode(value._links.self.href.split("/")[value._links.self.href.split("/").length - 1])}}
         </v-card-title >
         <v-card-title v-else>
-            icmpData
+            dnsData
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
@@ -84,7 +84,7 @@
 
 
     export default {
-        name: 'InspecticmpIcmpData',
+        name: 'InspectdnsDnsData',
         components:{
         },
         props: {
@@ -139,7 +139,7 @@
 
                     if(!this.offline) {
                         if(this.isNew) {
-                            temp = await axios.post(axios.fixUrl('/icmpData'), this.value)
+                            temp = await axios.post(axios.fixUrl('/dnsData'), this.value)
                         } else {
                             temp = await axios.put(axios.fixUrl(this.value._links.self.href), this.value)
                         }

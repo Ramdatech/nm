@@ -1,6 +1,6 @@
 <template>
     <div>
-    <h1>InputInfo</h1>
+    <h1>httpData</h1>
         <v-row>
             <v-card
                 class="mx-auto"
@@ -26,7 +26,7 @@
                         color="primary"
                         style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                     >
-                        InputInfo 등록
+                        httpData 등록
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -44,13 +44,17 @@
                             
                             
                             
+                            
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
-                            [ ClientId :  {{data.clientId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ ClientName :  {{data.clientName }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ CreateDate :  {{data.createDate }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Details :  {{data.details }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ IpId :  {{data.ipId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Obj :  {{data.obj }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ObjDetail :  {{data.objDetail }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ State :  {{data.state }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ EndedDate :  {{data.endedDate }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ResultData :  {{data.resultData }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -70,7 +74,7 @@
                         transition="dialog-bottom-transition"
                 >
 
-                    <RegistrationInputInfo :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <InspecthttpHttpData :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -89,12 +93,12 @@
 
 <script>
     const axios = require('axios').default;
-    import RegistrationInputInfo from './../RegistrationInputInfo.vue';
+    import InspecthttpHttpData from './../InspecthttpHttpData.vue';
 
     export default {
-        name: 'RegistrationInputInfoManager',
+        name: 'InspecthttpHttpDataManager',
         components: {
-            RegistrationInputInfo,
+            InspecthttpHttpData,
         },
         props: {
             offline: Boolean,
@@ -113,15 +117,17 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/inputinfos'))
-            temp.data._embedded.inputinfos.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
-            this.values = temp.data._embedded.inputinfos;
+            var temp = await axios.get(axios.fixUrl('/httpdatas'))
+            temp.data._embedded.httpdatas.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            this.values = temp.data._embedded.httpdatas;
             
             this.newValue = {
-                'clientId': 0,
-                'clientName': '',
-                'createDate': '2024-10-10',
-                'details': [],
+                'ipId': 0,
+                'obj': '',
+                'objDetail': '',
+                'state': '',
+                'endedDate': '2024-10-10',
+                'resultData': '',
             }
         },
         methods: {

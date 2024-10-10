@@ -1,35 +1,28 @@
 <template>
     <v-card outlined>
         <v-card-title>
-            Client # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
+            DnsData # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
         </v-card-title>
 
         <v-card-text>
             <div>
-                <Number label="ClientId" v-model="item.clientId" :editMode="editMode" @change="change" />
+                <Number label="IpId" v-model="item.ipId" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="CreateDate" v-model="item.createDate" :editMode="editMode" @change="change" />
+                <String label="Obj" v-model="item.obj" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="ModifiDate" v-model="item.modifiDate" :editMode="editMode" @change="change" />
+                <String label="ObjDetail" v-model="item.objDetail" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="ClientName" v-model="item.clientName" :editMode="editMode" @change="change" />
+                <String label="State" v-model="item.state" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="TotalReq" v-model="item.totalReq" :editMode="editMode" @change="change" />
+                <Date label="EndedDate" v-model="item.endedDate" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="TotalDns" v-model="item.totalDns" :editMode="editMode" @change="change" />
+                <String label="ResultData" v-model="item.resultData" :editMode="editMode" @change="change" />
             </div>
-            <div>
-                <String label="TotalEtn" v-model="item.totalEtn" :editMode="editMode" @change="change" />
-            </div>
-            <div>
-                <String label="LastInspectDate" v-model="item.lastInspectDate" :editMode="editMode" @change="change" />
-            </div>
-            <DetailManager offline label="Details" v-model="item.details" :editMode="false" @change="change" />
         </v-card-text>
 
         <v-card-actions>
@@ -76,7 +69,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'ManagementClientDetail',
+        name: 'InspectdnsDnsDataDetail',
         components:{},
         props: {
         },
@@ -87,7 +80,7 @@
         async created() {
             var me = this;
             var params = this.$route.params;
-            var temp = await axios.get(axios.fixUrl('/clients/' + params.id))
+            var temp = await axios.get(axios.fixUrl('/dnsData/' + params.id))
             if(temp.data) {
                 me.item = temp.data
             }

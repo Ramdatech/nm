@@ -18,7 +18,7 @@ public class HttpInspected extends AbstractEvent {
     private Date endedDate;
     private String resultData;
 
-    public HttpInspected(IcmpData aggregate) {
+    public HttpInspected(HttpData aggregate) {
         super(aggregate);
     }
 

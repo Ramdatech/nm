@@ -18,7 +18,7 @@ public class DnsInspected extends AbstractEvent {
     private Date endedDate;
     private String resultData;
 
-    public DnsInspected(IcmpData aggregate) {
+    public DnsInspected(DnsData aggregate) {
         super(aggregate);
     }
 

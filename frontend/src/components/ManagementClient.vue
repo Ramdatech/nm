@@ -16,6 +16,7 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
+            <Number v-if="editMode" label="ClientId" v-model="value.clientId" :editMode="editMode" :inputUI="''"/>
             <String label="CreateDate" v-model="value.createDate" :editMode="editMode" :inputUI="''"/>
             <String label="ModifiDate" v-model="value.modifiDate" :editMode="editMode" :inputUI="''"/>
             <String label="ClientName" v-model="value.clientName" :editMode="editMode" :inputUI="''"/>

@@ -19,5 +19,70 @@ public class InputInfoController {
 
     @Autowired
     InputInfoRepository inputInfoRepository;
+
+    @RequestMapping(
+        value = "/inputInfos/createclientinfo",
+        method = RequestMethod.POST,
+        produces = "application/json;charset=UTF-8"
+    )
+    public InputInfo createClientInfo(
+        HttpServletRequest request,
+        HttpServletResponse response,
+        @RequestBody CreateClientInfoCommand createClientInfoCommand
+    ) throws Exception {
+        System.out.println("##### /inputInfo/createClientInfo  called #####");
+        InputInfo inputInfo = new InputInfo();
+        inputInfo.createClientInfo(createClientInfoCommand);
+        inputInfoRepository.save(inputInfo);
+        return inputInfo;
+    }
+
+    @RequestMapping(
+        value = "/inputInfos/{id}/modifyclientinfo",
+        method = RequestMethod.PUT,
+        produces = "application/json;charset=UTF-8"
+    )
+    public InputInfo modifyClientInfo(
+        @PathVariable(value = "id") Long id,
+        @RequestBody ModifyClientInfoCommand modifyClientInfoCommand,
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws Exception {
+        System.out.println("##### /inputInfo/modifyClientInfo  called #####");
+        Optional<InputInfo> optionalInputInfo = inputInfoRepository.findById(
+            id
+        );
+
+        optionalInputInfo.orElseThrow(() -> new Exception("No Entity Found"));
+        InputInfo inputInfo = optionalInputInfo.get();
+        inputInfo.modifyClientInfo(modifyClientInfoCommand);
+
+        inputInfoRepository.save(inputInfo);
+        return inputInfo;
+    }
+
+    @RequestMapping(
+        value = "/inputInfos/{id}/deleteclientinfo",
+        method = RequestMethod.DELETE,
+        produces = "application/json;charset=UTF-8"
+    )
+    public InputInfo deleteClientInfo(
+        @PathVariable(value = "id") Long id,
+        @RequestBody DeleteClientInfoCommand deleteClientInfoCommand,
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws Exception {
+        System.out.println("##### /inputInfo/deleteClientInfo  called #####");
+        Optional<InputInfo> optionalInputInfo = inputInfoRepository.findById(
+            id
+        );
+
+        optionalInputInfo.orElseThrow(() -> new Exception("No Entity Found"));
+        InputInfo inputInfo = optionalInputInfo.get();
+        inputInfo.deleteClientInfo(deleteClientInfoCommand);
+
+        inputInfoRepository.delete(inputInfo);
+        return inputInfo;
+    }
 }
 //>>> Clean Arch / Inbound Adaptor

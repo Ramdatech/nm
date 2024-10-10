@@ -66,7 +66,7 @@
             values: [],
             headers: 
                 [
-                    { text: "id", value: "id" },
+                    { text: "ipId", value: "ipId" },
                     { text: "obj", value: "obj" },
                     { text: "objDetail", value: "objDetail" },
                     { text: "state", value: "state" },
@@ -89,10 +89,11 @@
             this.values = temp.data._embedded.icmpdatas;
 
             this.newValue = {
+                'ipId': 0,
                 'obj': '',
                 'objDetail': '',
                 'state': '',
-                'endedDate': '2024-10-08',
+                'endedDate': '2024-10-10',
                 'resultData': '',
             }
         },

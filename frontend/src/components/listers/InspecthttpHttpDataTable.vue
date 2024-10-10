@@ -31,7 +31,7 @@
                         </v-fab-transition>
                     </template>
 
-                    <RegistrationInputInfo :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <InspecthttpHttpData :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -50,12 +50,12 @@
 
 <script>
     const axios = require('axios').default;
-    import RegistrationInputInfo from './../RegistrationInputInfo.vue';
+    import InspecthttpHttpData from './../InspecthttpHttpData.vue';
 
     export default {
-        name: 'RegistrationInputInfoManager',
+        name: 'InspecthttpHttpDataManager',
         components: {
-            RegistrationInputInfo,
+            InspecthttpHttpData,
         },
         props: {
             offline: Boolean,
@@ -66,12 +66,14 @@
             values: [],
             headers: 
                 [
-                    { text: "clientId", value: "clientId" },
-                    { text: "clientName", value: "clientName" },
-                    { text: "createDate", value: "createDate" },
-                    { text: "details", value: "details" },
+                    { text: "ipId", value: "ipId" },
+                    { text: "obj", value: "obj" },
+                    { text: "objDetail", value: "objDetail" },
+                    { text: "state", value: "state" },
+                    { text: "endedDate", value: "endedDate" },
+                    { text: "resultData", value: "resultData" },
                 ],
-            inputInfo : [],
+            httpData : [],
             newValue: {},
             tick : true,
             openDialog : false,
@@ -82,15 +84,17 @@
                 return;
             }
 
-            var temp = await axios.get(axios.fixUrl('/inputinfos'))
-            temp.data._embedded.inputinfos.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
-            this.values = temp.data._embedded.inputinfos;
+            var temp = await axios.get(axios.fixUrl('/httpdatas'))
+            temp.data._embedded.httpdatas.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            this.values = temp.data._embedded.httpdatas;
 
             this.newValue = {
-                'clientId': 0,
-                'clientName': '',
-                'createDate': '2024-10-10',
-                'details': [],
+                'ipId': 0,
+                'obj': '',
+                'objDetail': '',
+                'state': '',
+                'endedDate': '2024-10-10',
+                'resultData': '',
             }
         },
         methods: {

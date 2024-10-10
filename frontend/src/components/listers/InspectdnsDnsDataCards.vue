@@ -8,7 +8,7 @@
         >
             <v-row>
                 <v-list-item class="d-flex" style="background-color: white;">
-                    <h1 class="align-self-center ml-3">Client</h1>
+                    <h1 class="align-self-center ml-3">dnsData</h1>
                     <div class="secondary-text-color" style="margin-left:30px;"></div>
                 </v-list-item>
             </v-row>
@@ -22,7 +22,7 @@
                         hide-overlay
                         transition="dialog-bottom-transition"
                 >
-                    <ManagementClient :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
+                    <InspectdnsDnsData :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick"/>
 
                     <v-btn
@@ -61,7 +61,7 @@
                                 color="primary"
                                 style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                             >
-                                Client 등록
+                                dnsData 등록
                             </v-btn>
                         </v-card-actions>
                     </v-card>
@@ -69,7 +69,7 @@
             </div>
         </v-col>
         <v-row>
-            <ManagementClient :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
+            <InspectdnsDnsData :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
         </v-row>
     </div>
 </template>
@@ -77,12 +77,12 @@
 <script>
 
     const axios = require('axios').default;
-    import ManagementClient from './../ManagementClient.vue';
+    import InspectdnsDnsData from './../InspectdnsDnsData.vue';
 
     export default {
-        name: 'ManagementClientManager',
+        name: 'InspectdnsDnsDataManager',
         components: {
-            ManagementClient,
+            InspectdnsDnsData,
         },
         props: {
             offline: Boolean
@@ -100,19 +100,16 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/clients'))
-            me.values = temp.data._embedded.clients;
+            var temp = await axios.get(axios.fixUrl('/dnsData'))
+            me.values = temp.data._embedded.dnsData;
             
             me.newValue = {
-                'clientId': 0,
-                'createDate': '',
-                'modifiDate': '',
-                'clientName': '',
-                'totalReq': '',
-                'totalDns': '',
-                'totalEtn': '',
-                'lastInspectDate': '',
-                'details': [],
+                'ipId': 0,
+                'obj': '',
+                'objDetail': '',
+                'state': '',
+                'endedDate': '2024-10-10',
+                'resultData': '',
             }
         },
         methods:{

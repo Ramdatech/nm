@@ -52,7 +52,7 @@
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
-                            [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ClientId :  {{data.clientId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ CreateDate :  {{data.createDate }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ModifiDate :  {{data.modifiDate }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ClientName :  {{data.clientName }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -128,6 +128,7 @@
             this.values = temp.data._embedded.clients;
             
             this.newValue = {
+                'clientId': 0,
                 'createDate': '',
                 'modifiDate': '',
                 'clientName': '',

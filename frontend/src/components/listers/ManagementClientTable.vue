@@ -66,7 +66,7 @@
             values: [],
             headers: 
                 [
-                    { text: "id", value: "id" },
+                    { text: "clientId", value: "clientId" },
                     { text: "createDate", value: "createDate" },
                     { text: "modifiDate", value: "modifiDate" },
                     { text: "clientName", value: "clientName" },
@@ -92,6 +92,7 @@
             this.values = temp.data._embedded.clients;
 
             this.newValue = {
+                'clientId': 0,
                 'createDate': '',
                 'modifiDate': '',
                 'clientName': '',

@@ -20,11 +20,11 @@ spring:
         - id: inspecthttp
           uri: http://localhost:8084
           predicates:
-            - Path=/icmpData/**, 
+            - Path=/httpData/**, 
         - id: inspectdns
           uri: http://localhost:8085
           predicates:
-            - Path=/icmpData/**, 
+            - Path=/dnsData/**, 
         - id: management
           uri: http://localhost:8086
           predicates:
@@ -64,11 +64,11 @@ spring:
         - id: inspecthttp
           uri: http://inspecthttp:8080
           predicates:
-            - Path=/icmpData/**, 
+            - Path=/httpData/**, 
         - id: inspectdns
           uri: http://inspectdns:8080
           predicates:
-            - Path=/icmpData/**, 
+            - Path=/dnsData/**, 
         - id: management
           uri: http://management:8080
           predicates:

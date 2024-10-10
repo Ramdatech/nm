@@ -12,6 +12,31 @@ public class InputInfoHateoasProcessor
 
     @Override
     public EntityModel<InputInfo> process(EntityModel<InputInfo> model) {
+        model.add(
+            Link
+                .of(
+                    model.getRequiredLink("self").getHref() +
+                    "//createclientinfo"
+                )
+                .withRel("/createclientinfo")
+        );
+        model.add(
+            Link
+                .of(
+                    model.getRequiredLink("self").getHref() +
+                    "/modifyclientinfo"
+                )
+                .withRel("modifyclientinfo")
+        );
+        model.add(
+            Link
+                .of(
+                    model.getRequiredLink("self").getHref() +
+                    "/deleteclientinfo"
+                )
+                .withRel("deleteclientinfo")
+        );
+
         return model;
     }
 }

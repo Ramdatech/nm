@@ -11,11 +11,11 @@ import InspecticmpIcmpDataDetail from "./components/listers/InspecticmpIcmpDataD
 import RegistrationInputInfoManager from "./components/listers/RegistrationInputInfoCards"
 import RegistrationInputInfoDetail from "./components/listers/RegistrationInputInfoDetail"
 
-import InspecthttpIcmpDataManager from "./components/listers/InspecthttpIcmpDataCards"
-import InspecthttpIcmpDataDetail from "./components/listers/InspecthttpIcmpDataDetail"
+import InspecthttpHttpDataManager from "./components/listers/InspecthttpHttpDataCards"
+import InspecthttpHttpDataDetail from "./components/listers/InspecthttpHttpDataDetail"
 
-import InspectdnsIcmpDataManager from "./components/listers/InspectdnsIcmpDataCards"
-import InspectdnsIcmpDataDetail from "./components/listers/InspectdnsIcmpDataDetail"
+import InspectdnsDnsDataManager from "./components/listers/InspectdnsDnsDataCards"
+import InspectdnsDnsDataDetail from "./components/listers/InspectdnsDnsDataDetail"
 
 import ManagementClientManager from "./components/listers/ManagementClientCards"
 import ManagementClientDetail from "./components/listers/ManagementClientDetail"
@@ -48,25 +48,25 @@ export default new Router({
             },
 
             {
-                path: '/inspecthttps/icmpData',
-                name: 'InspecthttpIcmpDataManager',
-                component: InspecthttpIcmpDataManager
+                path: '/inspecthttps/httpData',
+                name: 'InspecthttpHttpDataManager',
+                component: InspecthttpHttpDataManager
             },
             {
-                path: '/inspecthttps/icmpData/:id',
-                name: 'InspecthttpIcmpDataDetail',
-                component: InspecthttpIcmpDataDetail
+                path: '/inspecthttps/httpData/:id',
+                name: 'InspecthttpHttpDataDetail',
+                component: InspecthttpHttpDataDetail
             },
 
             {
-                path: '/inspectdns/icmpData',
-                name: 'InspectdnsIcmpDataManager',
-                component: InspectdnsIcmpDataManager
+                path: '/inspectdns/dnsData',
+                name: 'InspectdnsDnsDataManager',
+                component: InspectdnsDnsDataManager
             },
             {
-                path: '/inspectdns/icmpData/:id',
-                name: 'InspectdnsIcmpDataDetail',
-                component: InspectdnsIcmpDataDetail
+                path: '/inspectdns/dnsData/:id',
+                name: 'InspectdnsDnsDataDetail',
+                component: InspectdnsDnsDataDetail
             },
 
             {

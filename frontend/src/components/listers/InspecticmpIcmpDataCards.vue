@@ -104,10 +104,11 @@
             me.values = temp.data._embedded.icmpData;
             
             me.newValue = {
+                'ipId': 0,
                 'obj': '',
                 'objDetail': '',
                 'state': '',
-                'endedDate': '2024-10-08',
+                'endedDate': '2024-10-10',
                 'resultData': '',
             }
         },

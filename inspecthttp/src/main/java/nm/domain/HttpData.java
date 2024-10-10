@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
-import nm.InspecticmpApplication;
-import nm.domain.IcmpInspected;
+import nm.InspecthttpApplication;
+import nm.domain.HttpInspected;
 
 @Entity
-@Table(name = "IcmpData_table")
+@Table(name = "HttpData_table")
 @Data
 //<<< DDD / Aggregate Root
-public class IcmpData {
+public class HttpData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,33 +30,33 @@ public class IcmpData {
 
     @PostPersist
     public void onPostPersist() {
-        IcmpInspected icmpInspected = new IcmpInspected(this);
-        icmpInspected.publishAfterCommit();
+        HttpInspected httpInspected = new HttpInspected(this);
+        httpInspected.publishAfterCommit();
     }
 
-    public static IcmpDataRepository repository() {
-        IcmpDataRepository icmpDataRepository = InspecticmpApplication.applicationContext.getBean(
-            IcmpDataRepository.class
+    public static HttpDataRepository repository() {
+        HttpDataRepository httpDataRepository = InspecthttpApplication.applicationContext.getBean(
+            HttpDataRepository.class
         );
-        return icmpDataRepository;
+        return httpDataRepository;
     }
 
     //<<< Clean Arch / Port Method
-    public static void icmpInspect(SwapToInspect swapToInspect) {
+    public static void httpInspect(SwapToInspect swapToInspect) {
         //implement business logic here:
 
         /** Example 1:  new item 
-        IcmpData icmpData = new IcmpData();
-        repository().save(icmpData);
+        HttpData httpData = new HttpData();
+        repository().save(httpData);
 
         */
 
         /** Example 2:  finding and process
         
-        repository().findById(swapToInspect.get???()).ifPresent(icmpData->{
+        repository().findById(swapToInspect.get???()).ifPresent(httpData->{
             
-            icmpData // do something
-            repository().save(icmpData);
+            httpData // do something
+            repository().save(httpData);
 
 
          });

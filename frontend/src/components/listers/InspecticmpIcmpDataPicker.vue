@@ -15,6 +15,9 @@
                             <v-list-item-title>
                             </v-list-item-title>
                             <v-list-item-subtitle>
+                                IpId :  {{item.ipId }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
                                 Obj :  {{item.obj }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
@@ -79,7 +82,7 @@
                 var obj = {}
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
-                    obj['id'] = arr[4]; 
+                    obj['ipId'] = arr[4]; 
                     
                     
                     

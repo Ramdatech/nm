@@ -18,7 +18,7 @@ public class InputInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long clientId;
 
     private String clientName;
 
@@ -51,5 +51,33 @@ public class InputInfo {
         );
         return inputInfoRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public void createClientInfo(
+        CreateClientInfoCommand createClientInfoCommand
+    ) {
+        //implement business logic here:
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void modifyClientInfo(
+        ModifyClientInfoCommand modifyClientInfoCommand
+    ) {
+        //implement business logic here:
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void deleteClientInfo(
+        DeleteClientInfoCommand deleteClientInfoCommand
+    ) {
+        //implement business logic here:
+
+    }
+    //>>> Clean Arch / Port Method
+
 }
 //>>> DDD / Aggregate Root

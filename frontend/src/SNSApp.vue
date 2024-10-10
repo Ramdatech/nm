@@ -60,25 +60,25 @@
 
                     <v-list-item
                         class="px-2"
-                        key="icmpData"
-                        to="/inspecthttps/icmpData"
+                        key="httpData"
+                        to="/inspecthttps/httpData"
                         @click="changeUrl()"
                         color="primary"
                         style="font-weight:700;"
                     >
-                        icmpData
+                        httpData
                     </v-list-item>
 
 
                     <v-list-item
                         class="px-2"
-                        key="icmpData"
-                        to="/inspectdns/icmpData"
+                        key="dnsData"
+                        to="/inspectdns/dnsData"
                         @click="changeUrl()"
                         color="primary"
                         style="font-weight:700;"
                     >
-                        icmpData
+                        dnsData
                     </v-list-item>
 
 
@@ -187,17 +187,17 @@ export default {
                 ImageUrl: '',
             },
             { 
-                title: 'icmpData', 
+                title: 'httpData', 
                 description: '', 
-                key: 'icmpData', 
-                route: '/inspecthttps/icmpData',
+                key: 'httpData', 
+                route: '/inspecthttps/httpData',
                 ImageUrl: '',
             },
             { 
-                title: 'icmpData', 
+                title: 'dnsData', 
                 description: '', 
-                key: 'icmpData', 
-                route: '/inspectdns/icmpData',
+                key: 'dnsData', 
+                route: '/inspectdns/dnsData',
                 ImageUrl: '',
             },
             { 

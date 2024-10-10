@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class PolicyHandler {
 
     @Autowired
-    IcmpDataRepository icmpDataRepository;
+    HttpDataRepository httpDataRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
@@ -36,7 +36,7 @@ public class PolicyHandler {
         );
 
         // Sample Logic //
-        IcmpData.httpInspect(event);
+        HttpData.httpInspect(event);
     }
 }
 //>>> Clean Arch / Inbound Adaptor

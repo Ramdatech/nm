@@ -49,9 +49,9 @@ pluralCaseList.push( {plural: "inspecticmps/icmpData", pascal: "InspecticmpIcmpD
 
 pluralCaseList.push( {plural: "registrations/inputInfos", pascal: "RegistrationInputInfo"} )
 
-pluralCaseList.push( {plural: "inspecthttps/icmpData", pascal: "InspecthttpIcmpData"} )
+pluralCaseList.push( {plural: "inspecthttps/httpData", pascal: "InspecthttpHttpData"} )
 
-pluralCaseList.push( {plural: "inspectdns/icmpData", pascal: "InspectdnsIcmpData"} )
+pluralCaseList.push( {plural: "inspectdns/dnsData", pascal: "InspectdnsDnsData"} )
 
 pluralCaseList.push( {plural: "managements/clients", pascal: "ManagementClient"} )
 

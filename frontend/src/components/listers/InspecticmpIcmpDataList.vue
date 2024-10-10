@@ -49,7 +49,7 @@
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
-                            [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ IpId :  {{data.ipId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Obj :  {{data.obj }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ObjDetail :  {{data.objDetail }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ State :  {{data.state }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -122,10 +122,11 @@
             this.values = temp.data._embedded.icmpdatas;
             
             this.newValue = {
+                'ipId': 0,
                 'obj': '',
                 'objDetail': '',
                 'state': '',
-                'endedDate': '2024-10-08',
+                'endedDate': '2024-10-10',
                 'resultData': '',
             }
         },

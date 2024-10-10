@@ -5,6 +5,11 @@
         </v-card-title>
 
         <v-card-text>
+            <Number label="ClientId" v-model="value.clientId" :editMode="editMode"/>
+            <String label="ClientName" v-model="value.clientName" :editMode="editMode"/>
+            <Date label="CreateDate" v-model="value.createDate" :editMode="editMode"/>
+            <List&lt;Detail&gt; offline label="Details" v-model="value.details" :editMode="editMode" @change="change"/>
+            <DetailList offline label="Details" v-model="value.details" :editMode="editMode" @change="change"/>
         </v-card-text>
 
         <v-card-actions>
@@ -40,6 +45,10 @@
             value: {},
         }),
         created() {
+            this.value.clientId = 0;
+            this.value.clientName = '';
+            this.value.createDate = '2024-10-10';
+            this.value.details = [];
         },
         watch: {
         },

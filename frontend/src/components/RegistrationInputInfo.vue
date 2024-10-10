@@ -16,6 +16,7 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
+            <Number v-if="editMode" label="ClientId" v-model="value.clientId" :editMode="editMode" :inputUI="''"/>
             <String label="ClientName" v-model="value.clientName" :editMode="editMode" :inputUI="''"/>
             <Date label="CreateDate" v-model="value.createDate" :editMode="editMode" :inputUI="''"/>
             <DetailManager offline label="Details" v-model="value.details" :editMode="editMode" @change="change"/>
@@ -37,21 +38,7 @@
                     text
                     @click="save"
                 >
-                    createClientInfo
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    modifyClientInfo
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    deleteClientInfo
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -73,6 +60,48 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openCreateClientInfo"
+            >
+                CreateClientInfo
+            </v-btn>
+            <v-dialog v-model="createClientInfoDiagram" width="500">
+                <CreateClientInfoCommand
+                    @closeDialog="closeCreateClientInfo"
+                    @createClientInfo="createClientInfo"
+                ></CreateClientInfoCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openModifyClientInfo"
+            >
+                ModifyClientInfo
+            </v-btn>
+            <v-dialog v-model="modifyClientInfoDiagram" width="500">
+                <ModifyClientInfoCommand
+                    @closeDialog="closeModifyClientInfo"
+                    @modifyClientInfo="modifyClientInfo"
+                ></ModifyClientInfoCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openDeleteClientInfo"
+            >
+                DeleteClientInfo
+            </v-btn>
+            <v-dialog v-model="deleteClientInfoDiagram" width="500">
+                <DeleteClientInfoCommand
+                    @closeDialog="closeDeleteClientInfo"
+                    @deleteClientInfo="deleteClientInfo"
+                ></DeleteClientInfoCommand>
+            </v-dialog>
         </v-card-actions>
 
         <v-snackbar
@@ -110,6 +139,9 @@
                 timeout: 5000,
                 text: '',
             },
+            createClientInfoDiagram: false,
+            modifyClientInfoDiagram: false,
+            deleteClientInfoDiagram: false,
         }),
 	async created() {
         },
@@ -206,6 +238,73 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async createClientInfo() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/createclientinfo'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async modifyClientInfo(params) {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['modifyclientinfo'].href), params)
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                    this.closeModifyClientInfo();
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            openModifyClientInfo() {
+                this.modifyClientInfoDiagram = true;
+            },
+            closeModifyClientInfo() {
+                this.modifyClientInfoDiagram = false;
+            },
+            async deleteClientInfo() {
+                try {
+                    if(!this.offline) {
+                        await axios.delete(axios.fixUrl(this.value._links['deleteClientInfo'].href))
+                    }
+
+                    this.editMode = false;
+                    this.isDelete = true;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }
