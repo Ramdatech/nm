@@ -24,7 +24,7 @@ public class InputInfo {
 
     private Date createDate;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Detail> details;
 
     @PostPersist

@@ -175,24 +175,7 @@ public class Client {
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void dataDelete(ClientInfoDeleted clientInfoDeleted) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Client client = new Client();
-        repository().save(client);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(clientInfoDeleted.get???()).ifPresent(client->{
-            
-            client // do something
-            repository().save(client);
-
-
-         });
-        */
+        repository().deleteById(clientInfoDeleted.getClientId());
 
     }
     //>>> Clean Arch / Port Method
