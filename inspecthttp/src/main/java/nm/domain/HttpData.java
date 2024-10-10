@@ -50,7 +50,7 @@ public class HttpData {
     //<<< Clean Arch / Port Method
     public static void httpInspect(SwapToInspect swapToInspect) {
         
-        repository().findById(Long.valueOf(swapToInspect.getId())).ifPresent(icmpData->{
+        repository().findById(Long.valueOf(swapToInspect.getClientId())).ifPresent(icmpData->{
 
             // details가 null이 아닌지 확인
             if (swapToInspect.getDetails() != null) {
@@ -87,5 +87,4 @@ public class HttpData {
             }
         });
     }
-
 }
