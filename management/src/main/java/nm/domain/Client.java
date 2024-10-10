@@ -32,7 +32,7 @@ public class Client {
 
     private String totalEtn;
 
-    private String lastInspectDate;
+    private Date lastInspectDate;
 
     @ElementCollection
     private List<Detail> details;
