@@ -129,8 +129,8 @@
             
             this.newValue = {
                 'clientId': 0,
-                'createDate': '',
-                'modifiDate': '',
+                'createDate': '2024-10-10',
+                'modifiDate': '2024-10-10',
                 'clientName': '',
                 'totalReq': '',
                 'totalDns': '',
