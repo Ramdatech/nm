@@ -57,15 +57,18 @@ public class Client {
         client.setCreateDate(clientInfoCreated.getCreateDate());
         client.setModifiDate(clientInfoCreated.getCreateDate());
        
-        if (clientInfoCreated.getDetails() instanceof List<?>) {
-            @SuppressWarnings("unchecked")
-            List<Detail> detailList = (List<Detail>) clientInfoCreated.getDetails();
-            client.setDetails(detailList); // Assuming setDetails accepts List<Detail>
-        } else {
-            throw new IllegalArgumentException("Details must be of type List<Detail>");
-        }
+        // if (clientInfoCreated.getDetails() instanceof List<?>) {
+        //     @SuppressWarnings("unchecked")
+        //     List<Detail> detailList = (List<Detail>) clientInfoCreated.getDetails();
+        //     client.setDetails(detailList); // Assuming setDetails accepts List<Detail>
+        // } else {
+        //     throw new IllegalArgumentException("Details must be of type List<Detail>");
+        // }
+        System.err.println("-------");
+        System.out.println(clientInfoCreated.getDetails());
+        System.err.println("-------");
+        client.setDetails(clientInfoCreated.getDetails());
 
-        
         repository().save(client);
     } else {
         throw new IllegalArgumentException("Client name cannot be null or empty");
