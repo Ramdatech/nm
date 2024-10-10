@@ -50,24 +50,26 @@ public class Client {
 
     //<<< Clean Arch / Port Method
     public static void dataRegist(ClientInfoCreated clientInfoCreated) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
+    // Ensure the clientName and other necessary fields are not null or invalid
+    if (clientInfoCreated.getClientName() != null && !clientInfoCreated.getClientName().isEmpty()) {
         Client client = new Client();
-        repository().save(client);
+        client.setClientName(clientInfoCreated.getClientName());
+        client.setCreateDate(clientInfoCreated.getCreateDate());
+        client.setModifiDate(clientInfoCreated.getCreateDate());
+       
+        if (clientInfoCreated.getDetails() instanceof List<?>) {
+            @SuppressWarnings("unchecked")
+            List<Detail> detailList = (List<Detail>) clientInfoCreated.getDetails();
+            client.setDetails(detailList); // Assuming setDetails accepts List<Detail>
+        } else {
+            throw new IllegalArgumentException("Details must be of type List<Detail>");
+        }
 
-        */
-
-        /** Example 2:  finding and process
         
-        repository().findById(clientInfoCreated.get???()).ifPresent(client->{
-            
-            client // do something
-            repository().save(client);
-
-
-         });
-        */
+        repository().save(client);
+    } else {
+        throw new IllegalArgumentException("Client name cannot be null or empty");
+    }
 
     }
 
