@@ -9,10 +9,10 @@
                 <Number label="ClientId" v-model="item.clientId" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="CreateDate" v-model="item.createDate" :editMode="editMode" @change="change" />
+                <Date label="CreateDate" v-model="item.createDate" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="ModifiDate" v-model="item.modifiDate" :editMode="editMode" @change="change" />
+                <Date label="ModifiDate" v-model="item.modifiDate" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <String label="ClientName" v-model="item.clientName" :editMode="editMode" @change="change" />

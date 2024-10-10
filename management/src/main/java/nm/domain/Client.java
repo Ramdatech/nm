@@ -18,9 +18,9 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long clientId;
 
-    private String createDate;
+    private Date createDate;
 
-    private String modifiDate;
+    private Date modifiDate;
 
     private String clientName;
 
