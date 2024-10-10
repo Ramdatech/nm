@@ -17,5 +17,5 @@ public class SwapToInspect extends AbstractEvent {
     private String totalDns;
     private String totalEtn;
     private String lastInspectDate;
-    private Object details;
+    private List<Detail> details;
 }
