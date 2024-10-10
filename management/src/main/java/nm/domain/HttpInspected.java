@@ -9,7 +9,7 @@ import nm.infra.AbstractEvent;
 @ToString
 public class HttpInspected extends AbstractEvent {
 
-    private Long id;
+    private Long ipId;
     private String obj;
     private String objDetail;
     private String state;
