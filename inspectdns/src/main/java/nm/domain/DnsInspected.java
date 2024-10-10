@@ -11,7 +11,7 @@ import nm.infra.AbstractEvent;
 @ToString
 public class DnsInspected extends AbstractEvent {
 
-    private Long id;
+    private Long ipId;
     private String obj;
     private String objDetail;
     private String state;

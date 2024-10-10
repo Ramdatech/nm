@@ -9,7 +9,7 @@ import nm.infra.AbstractEvent;
 @ToString
 public class ClientInfoCreated extends AbstractEvent {
 
-    private Long id;
+    private Long clientId;
     private String clientName;
     private Date createDate;
     private Object details;
