@@ -11,9 +11,9 @@ import nm.infra.AbstractEvent;
 @ToString
 public class SwapToInspect extends AbstractEvent {
 
-    private Long id;
-    private String createDate;
-    private String modifiDate;
+    private Long clientId;
+    private Date createDate;
+    private Date modifiDate;
     private String clientName;
     private String totalReq;
     private String totalDns;
