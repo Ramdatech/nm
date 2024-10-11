@@ -125,10 +125,10 @@ public class SwapToInspectService {
 }
 
 ```
-### 조건 : 응답결과 집계가 없거나, 최종 측정일로부터 특정 시간이 경과된 경우<br>
-  분기 1 ) 본 쿼리에 해당하는 데이터가 존재하지 않을 때<br>
+### 조건 : 응답결과 집계가 없거나, 최종 측정일로부터 특정 시간이 경과된 경우<br><br>
+  **분기 1 ) 본 쿼리에 해당하는 데이터가 존재하지 않을 때<br><br>**
   ![image](https://github.com/user-attachments/assets/c425aa1f-a05a-4f8e-860b-5295c5a7475b)<br>
-  분기 2 ) 데이터가 존재할 경우<br>
+  **분기 2 ) 데이터가 존재할 경우<br><br>**
   ![image](https://github.com/user-attachments/assets/76cc18ca-9933-4f13-9c4f-5c0270809d59)<br>
 
 ## API 게이트웨이
