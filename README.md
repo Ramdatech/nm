@@ -218,7 +218,7 @@ public class Detail {
 
 
 
-## 동작 페이지 
+## 테스트 페이지
 ![image](https://github.com/user-attachments/assets/1f19110b-2fe6-4cd2-9296-eb90cb34812e)
 ![image](https://github.com/user-attachments/assets/0d8532bc-eca4-4aa9-9f12-b492bfb73f49)
 
