@@ -160,6 +160,12 @@ public class SwapToInspectService {
 ![image](https://github.com/user-attachments/assets/bcf370e0-b4dd-4faa-a1d3-10ddcbf87564)
 
 
+## 동작 페이지 
+![image](https://github.com/user-attachments/assets/1f19110b-2fe6-4cd2-9296-eb90cb34812e)
+![image](https://github.com/user-attachments/assets/0d8532bc-eca4-4aa9-9f12-b492bfb73f49)
+
+
+
 ## API 게이트웨이
 - gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8088 으로 설정함
 
