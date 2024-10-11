@@ -131,6 +131,35 @@ public class SwapToInspectService {
   **분기 2 ) 데이터가 존재할 경우<br><br>**
   ![image](https://github.com/user-attachments/assets/76cc18ca-9933-4f13-9c4f-5c0270809d59)<br>
 
+
+## ICMP 응답 측정
+```
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type'] == 'SwapToInspect'"
+    )
+    public void wheneverSwapToInspect_HttpInspect(
+        @Payload SwapToInspect swapToInspect,
+        @Header("type") byte[] typeHeader // 바이트 배열로 수신됨
+    ) {
+        if (typeHeader != null) {
+            String type = new String(typeHeader, StandardCharsets.UTF_8);
+            System.out.println("Received type: " + type);
+    
+            if ("SwapToInspect".equals(type)) {
+                System.out.println("Received event: " + swapToInspect);
+                HttpData.httpInspect(swapToInspect);  // Ping 테스트 수행
+            } else {
+                System.out.println("Received unknown type: " + type);
+            }
+        } else {
+            System.out.println("Type header is missing");
+        }
+    }
+```
+![image](https://github.com/user-attachments/assets/bcf370e0-b4dd-4faa-a1d3-10ddcbf87564)
+
+
 ## API 게이트웨이
 - gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8088 으로 설정함
 
