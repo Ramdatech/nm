@@ -237,6 +237,7 @@ public class DnsTest {
 }
 
 ```
+DNS 서버 응답 비교하여, KT 및 Google 등의 유책 측정
 
 
 
