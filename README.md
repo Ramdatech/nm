@@ -1,4 +1,4 @@
-# N Linkus
+![image](https://github.com/user-attachments/assets/31934da7-0163-43eb-a32f-5b84a3920378)![image](https://github.com/user-attachments/assets/0cae5c05-9664-4004-aa08-b27e5892ceec)# N Linkus
 
 # 초기 구상
 ![image](https://github.com/user-attachments/assets/e7210a6c-74b8-4f68-8168-4cc026ce7162)
@@ -158,6 +158,64 @@ public class SwapToInspectService {
     }
 ```
 ![image](https://github.com/user-attachments/assets/bcf370e0-b4dd-4faa-a1d3-10ddcbf87564)
+
+## 정보 등록 API
+### 일대다 관계 (고객 - 장비 간)
+![image](https://github.com/user-attachments/assets/1300e215-ddd4-4896-97a8-5e0bcea3adfb)
+<br>
+```
+### inputs
+clientName='dd' details:='[ { "id": 5, "type": "dns", "obj": "192.127.0.5", "subobj": "", "state": "" }, { "id": 7, "type": "icmp", "obj": "192.168.0.5", "subobj": "", "state": "" } ]'
+```
+```
+public class Client {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long clientId;
+
+    private Date createDate;
+
+    private Date modifiDate;
+
+    private String clientName;
+
+    private String totalReq;
+
+    private String totalDns;
+
+    private String totalEtn;
+
+    private Date lastInspectDate;
+
+    // @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Detail> details;
+
+@Embeddable
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Detail {
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String type;
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String obj;
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String subobj;
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String state;
+}
+```
+![image](https://github.com/user-attachments/assets/995e1a5e-843b-4efd-b0e5-893f5424aa04)
+
 
 
 ## 동작 페이지 
