@@ -125,8 +125,11 @@ public class SwapToInspectService {
 }
 
 ```
-![image](https://github.com/user-attachments/assets/c425aa1f-a05a-4f8e-860b-5295c5a7475b)
-
+조건 : 응답결과 집계가 없거나, 최종 측정일로부터 특정 시간이 경과된 경우
+  분기 1 ) 본 쿼리에 해당하는 데이터가 존재하지 않을 때
+  ![image](https://github.com/user-attachments/assets/c425aa1f-a05a-4f8e-860b-5295c5a7475b)
+  분기 2 ) 데이터가 존재할 경우
+  ![image](https://github.com/user-attachments/assets/76cc18ca-9933-4f13-9c4f-5c0270809d59)
 
 ## API 게이트웨이
 - gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8088 으로 설정함
