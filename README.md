@@ -57,7 +57,9 @@
 # 구현
 ## API 게이트웨이
 - gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8088 으로 설정함
+
 ![image](https://github.com/user-attachments/assets/6e85b168-eb84-4fba-bf9a-a2268c82da4b)
+
 ## Correlation
 - 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
 ![image](https://github.com/user-attachments/assets/39078a21-2cbd-4061-9049-18b822f73818)
