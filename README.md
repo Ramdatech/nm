@@ -56,6 +56,77 @@
 ![image](https://github.com/user-attachments/assets/625274c9-95cf-4417-8d3b-9e35b70639d9)
 
 # 구현
+
+## Scheduling
+```
+
+@Service
+public class SwapToInspectService {
+
+    private static final String TOPIC_NAME = "nm";
+
+    @Autowired
+    private KafkaTemplate<String, SwapToInspect> kafkaTemplate;
+
+    @Autowired
+    private ClientRepository clientRepository;  // 클라이언트 데이터베이스와 상호작용
+    @Scheduled(fixedRate = 3000)
+    public void sendSwapToInspectEvent() {
+        // 현재 시점에서 5분 전의 시간을 구함
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MINUTE, -5);
+        Date threshold = cal.getTime();
+
+        // 조건에 맞는 클라이언트를 찾아온다
+        List<Client> clientsToInspect = clientRepository.findClientsForInspection(threshold);
+
+        if (clientsToInspect.isEmpty()) {
+            System.out.println("검사 대상 클라이언트가 없습니다.");
+        } else {
+            // 조건에 맞는 각 클라이언트에 대해 SwapToInspect 이벤트 전송
+            for (Client client : clientsToInspect) {
+                SwapToInspect event = new SwapToInspect();
+                event.setClientId(client.getClientId());  // 클라이언트 ID 설정
+                event.setClientName(client.getClientName());  // 클라이언트 이름 설정
+                event.setCreateDate(client.getCreateDate());  // 클라이언트 생성일 설정
+                event.setModifiDate(client.getModifiDate());  // 수정일 설정
+                event.setTotalReq(client.getTotalReq());  // TotalReq 설정
+                event.setTotalDns(client.getTotalDns());  // TotalDns 설정
+                event.setTotalEtn(client.getTotalEtn());  // TotalEtn 설정
+                event.setDetails(client.getDetails());  // 클라이언트의 상세 정보 설정
+    
+
+                // Kafka로 이벤트 전송
+                // kafkaTemplate.send(TOPIC_NAME, event);
+
+                // Kafka 메시지 생성 (헤더 포함)
+                ProducerRecord<String, SwapToInspect> record = new ProducerRecord<>(TOPIC_NAME, event);
+
+                // 헤더에 'type'을 UTF-8로 인코딩하여 추가
+                record.headers().add(new RecordHeader("type", "SwapToInspect".getBytes(StandardCharsets.UTF_8)));
+
+                // Kafka로 이벤트 전송
+                kafkaTemplate.send(record).addCallback(new ListenableFutureCallback<>() {
+                    @Override
+                    public void onSuccess(SendResult<String, SwapToInspect> result) {
+                        System.out.println("Message sent successfully: " + result.getProducerRecord().value());
+                    }
+
+                    @Override
+                    public void onFailure(Throwable ex) {
+                        System.err.println("Message failed to send: " + ex.getMessage());
+                    }
+                });
+                System.out.println("SwapToInspect 이벤트가 전송되었습니다: " + event);
+            }
+        }
+    }
+}
+
+```
+![image](https://github.com/user-attachments/assets/c425aa1f-a05a-4f8e-860b-5295c5a7475b)
+
+
 ## API 게이트웨이
 - gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8088 으로 설정함
 
