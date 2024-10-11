@@ -34,7 +34,8 @@ public class Client {
 
     private Date lastInspectDate;
 
-    @ElementCollection
+    // @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Detail> details;
 
     @PostPersist
