@@ -1,9 +1,10 @@
-# N.M
+# N Linkus
 
 # 초기 구상
 ![image](https://github.com/user-attachments/assets/e7210a6c-74b8-4f68-8168-4cc026ce7162)
 
-
+고객별로 보유하거나 관제를 원하는 다양한 프로토콜 및 정보에 대해, 
+MSA 기반의 모니터링 시스템을 구축하고 시계열로 데이터를 보관하는 플랫폼
 
 
 # 서비스 시나리오
