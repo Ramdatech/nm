@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/31934da7-0163-43eb-a32f-5b84a3920378)![image](https://github.com/user-attachments/assets/0cae5c05-9664-4004-aa08-b27e5892ceec)# N Linkus
+# N Linkus
 
 # 초기 구상
 ![image](https://github.com/user-attachments/assets/e7210a6c-74b8-4f68-8168-4cc026ce7162)
