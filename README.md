@@ -47,8 +47,17 @@
 - **실시간 조회**: 고객은 등록된 모든 장비의 상태와 실시간 데이터를 빠르게 조회할 수 있어야 한다. (CQRS)
 - **알림 처리**: 네트워크 장비 상태가 변경될 때마다 즉시 고객에게 알림을 전달할 수 있어야 한다. (Event-driven)
 
+# 분석 설계
 ## Event Storming 결과
 * MSAEz 로 모델링한 이벤트스토밍 결과:  https://labs.msaez.io/#/62131378/storming/nm
 
 ### 이벤트 도출
 ![image](https://github.com/user-attachments/assets/625274c9-95cf-4417-8d3b-9e35b70639d9)
+
+# 구현
+## API 게이트웨이
+- gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8088 으로 설정함
+![image](https://github.com/user-attachments/assets/6e85b168-eb84-4fba-bf9a-a2268c82da4b)
+## Correlation
+- 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
+![image](https://github.com/user-attachments/assets/39078a21-2cbd-4061-9049-18b822f73818)
