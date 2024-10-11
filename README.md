@@ -159,6 +159,87 @@ public class SwapToInspectService {
 ```
 ![image](https://github.com/user-attachments/assets/bcf370e0-b4dd-4faa-a1d3-10ddcbf87564)
 
+
+## DNS 응답 검사
+```
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.*;
+import java.util.concurrent.*;
+
+public class DnsTest {
+
+    private static final List<String[]> OTHER_DNS_SERVERS = Arrays.asList(
+        new String[]{"8.8.8.8", "8.8.4.4"},    // Google DNS
+        new String[]{"1.1.1.1", "1.0.0.1"},    // Cloudflare DNS
+        new String[]{"208.67.222.222", "208.67.220.220"}  // OpenDNS
+    );
+
+    private static final String[] KT_DNS_SERVERS = {"168.126.63.1", "168.126.63.2"};  // KT DNS 서버
+
+    public static Map<String, Boolean> dnsTest(List<String> domains) {
+        Map<String, Boolean> responses = new HashMap<>();
+        ExecutorService executor = Executors.newFixedThreadPool(10); // 스레드 풀을 사용한 비동기 처리
+
+        // 각 도메인을 처리
+        for (String domain : domains) {
+            Future<Boolean> future = executor.submit(() -> processDnsDomain(domain));
+            try {
+                Boolean result = future.get();
+                responses.put(domain, result);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                responses.put(domain, null);
+            }
+        }
+
+        executor.shutdown();
+        return responses;
+    }
+
+    private static boolean processDnsDomain(String domain) {
+        // 다른 DNS 서버들에서 결과 확인
+        int successCount = 0;
+        for (String[] dnsServers : OTHER_DNS_SERVERS) {
+            if (resolveDomain(domain, dnsServers)) {
+                successCount++;
+            }
+        }
+
+        // 신뢰성 체크 (최소 2개의 다른 DNS 서버에서 성공한 경우)
+        if (successCount >= 2) {
+            // KT DNS에서 확인
+            return resolveDomain(domain, KT_DNS_SERVERS);
+        } else {
+            return false;  // 신뢰할 수 없을 때 false
+        }
+    }
+
+    private static boolean resolveDomain(String domain, String[] dnsServers) {
+        // dns 서버를 통한 도메인 확인
+        try {
+            InetAddress.getByName(domain);
+            return true;  // 도메인 확인 성공
+        } catch (UnknownHostException e) {
+            return false; // 도메인 확인 실패
+        }
+    }
+
+    public static void main(String[] args) {
+        List<String> testDomains = Arrays.asList("example.com", "google.com", "nonexistentdomain.xyz");
+        Map<String, Boolean> results = dnsTest(testDomains);
+
+        // 결과 출력
+        for (Map.Entry<String, Boolean> entry : results.entrySet()) {
+            System.out.println("Domain: " + entry.getKey() + " -> Result: " + entry.getValue());
+        }
+    }
+}
+
+```
+
+
+
 ## 정보 등록 API
 ### 일대다 관계 (고객 - 장비 간)
 ![image](https://github.com/user-attachments/assets/1300e215-ddd4-4896-97a8-5e0bcea3adfb)
